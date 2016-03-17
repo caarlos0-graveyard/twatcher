@@ -1,0 +1,10 @@
+hash: 8be10353079fc41a79c8c5d3fb521df66e47285708cae98b1c4da18f890091fc
+updated: 2016-03-16T23:15:56.909671291-03:00
+imports:
+- name: github.com/caarlos0/env
+  version: 26ad2601cc3a3333e3c7a98c404d6dd3533e0f5b
+- name: github.com/jteeuwen/go-pkg-rss
+  version: 72391e6fd7384785fa3c46a405214a616d6c4a1d
+- name: github.com/jteeuwen/go-pkg-xmlx
+  version: 76f54ee73233b171ca9ee82ef837a1fc4d3809c0
+devImports: []

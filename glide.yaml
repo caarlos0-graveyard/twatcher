@@ -1,0 +1,4 @@
+package: github.com/caarlos0/tvshows
+import:
+- package: github.com/caarlos0/env
+- package: github.com/jteeuwen/go-pkg-rss
