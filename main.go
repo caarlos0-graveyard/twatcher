@@ -1,20 +1,36 @@
 package main
 
 import (
-	"github.com/caarlos0/env"
+	"os"
+
 	"github.com/caarlos0/tvshows/feed"
+	"github.com/codegangsta/cli"
 )
 
-// Config for the poller
-type Config struct {
-	URL   string   `env:"FEED_URL"`
-	Shows []string `env:"SHOWS" envSeparator:"|"`
-}
-
-var config Config
-
 func main() {
-	config = Config{}
-	env.Parse(&config)
-	feed.NewFeed(config.URL, config.Shows).Poll()
+
+	app := cli.NewApp()
+	app.Name = "TVShows"
+	app.Usage = "Let this binary running, and it will download your favorite tv shows to ~/Downloads"
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:  "feed",
+			Usage: "Feed URL to check for new shows",
+		},
+		cli.StringSliceFlag{
+			Name:  "show",
+			Usage: "Show you want to watch",
+		},
+	}
+	app.Action = func(c *cli.Context) {
+		if c.NumFlags() == 0 {
+			cli.ShowAppHelp(c)
+			return
+		}
+		feed.NewFeed(
+			c.String("feed"),
+			c.StringSlice("shows"),
+		).Poll()
+	}
+	app.Run(os.Args)
 }
