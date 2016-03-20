@@ -30,8 +30,7 @@ func (f *Feed) Poll() {
 	for {
 		fmt.Println("Looking for new episodes...")
 		if err := feed.Fetch(f.URL, nil); err != nil {
-			fmt.Fprintf(os.Stderr, "[e] %s: %s\n", f.URL, err)
-			return
+			fmt.Fprintf(os.Stderr, "Failed to fetch feed: %s: %s\n", f.URL, err)
 		}
 		<-time.After(time.Duration(5 * time.Minute))
 	}

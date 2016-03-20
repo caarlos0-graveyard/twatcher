@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"strings"
 
 	"github.com/caarlos0/tvshows/feed"
 	"github.com/codegangsta/cli"
@@ -27,9 +29,14 @@ func main() {
 			cli.ShowAppHelp(c)
 			return
 		}
+		fmt.Println(
+			"Watching",
+			strings.Join(c.StringSlice("show"), ", ")+".",
+			"Press CTRL+C to stop.",
+		)
 		feed.NewFeed(
 			c.String("feed"),
-			c.StringSlice("shows"),
+			c.StringSlice("show"),
 		).Poll()
 	}
 	app.Run(os.Args)

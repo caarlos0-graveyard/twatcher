@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"os/user"
 	"strings"
 )
@@ -24,30 +25,39 @@ func NewTorrent(title, href string) *Torrent {
 
 // Download the torrent to ~/Downloads
 func (t *Torrent) Download() {
-	fmt.Printf("Downloading %s...\n", t.Title)
+	fmt.Fprintf(os.Stderr, "Downloading %s...\n", t.Title)
 	response, err := http.Get(t.Href)
 	if err != nil {
-		fmt.Printf("Failed to download %s\n", t.Title)
-		return
+		fmt.Fprintf(os.Stderr, "Failed to download %s\n", t.Title)
 	}
 	defer response.Body.Close()
 	contents, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		fmt.Printf("Failed to read the contents of %s\n", t.Title)
-		return
+		fmt.Fprintf(
+			os.Stderr,
+			"Failed to read the contents of %s\n",
+			t.Title,
+		)
 	}
 
 	if err := ioutil.WriteFile(t.filename(), contents, 0644); err != nil {
-		fmt.Printf("Failed to save the contents of %s to the torrent file\n", t.Title)
+		fmt.Fprintf(
+			os.Stderr,
+			"Failed to save the contents of %s to the torrent file\n",
+			t.Title,
+		)
 	}
 }
 
 func (t *Torrent) filename() string {
+	filename := strings.Replace(t.Title, " ", ".", -1)
 	me, err := user.Current()
 	if err != nil {
-		fmt.Printf("Failed to get the current user!\n")
-		return ""
+		fmt.Fprintf(
+			os.Stderr,
+			"Failed to get the current user! Will save files in /tmp.\n",
+		)
+		return "/tmp/" + filename + ".torrent"
 	}
-	filename := strings.Replace(t.Title, " ", ".", -1)
 	return me.HomeDir + "/Downloads/" + filename + ".torrent"
 }
