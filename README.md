@@ -13,7 +13,7 @@ $ tvshows --feed YOUR_TORRENT_FEED_URL \
   --show "Game.of.Thrones"
 ```
 
-## As an OSX daemon
+### As an OSX daemon
 
 If you want it to run all the time - which makes sense, by the way, you can
 use the OS X Daemon feature:
