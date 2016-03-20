@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Label</key>
+		<string>tvshows</string>
+		<key>ProgramArguments</key>
+		<array>
+			<string>/Users/carlos/Code/Go/bin/tvshows</string>
+			<string>--feed</string>
+			<string>https://your_feed_url</string>
+			<string>--show</string>
+			<string>Show1</string>
+			<string>--show</string>
+			<string>show2</string>
+		</array>
+		<key>RunAtLoad</key>
+		<true/>
+		<key>StandardOutPath</key>
+		<string>/Users/carlos/Library/Logs/tvshows-out.log</string>
+		<key>StandardErrorPath</key>
+		<string>/Users/carlos/Library/Logs/tvshows-err.log</string>
+	</dict>
+</plist>
