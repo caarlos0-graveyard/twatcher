@@ -1,6 +1,6 @@
 # tvshows
 
-Agent to automagically download tv shows torrent file to ~/Downloads :bomb:
+Agent to automagically download tv shows torrent files to ~/Downloads :bomb:
 
 ## Usage
 
