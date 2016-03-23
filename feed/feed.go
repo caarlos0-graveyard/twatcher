@@ -12,15 +12,17 @@ import (
 
 // Feed type
 type Feed struct {
-	URL   string
-	Shows []string
+	URL     string
+	Quality string
+	Shows   []string
 }
 
 // NewFeed instance
-func NewFeed(uri string, shows []string) *Feed {
+func NewFeed(uri, quality string, shows []string) *Feed {
 	return &Feed{
-		URL:   uri,
-		Shows: shows,
+		URL:     uri,
+		Quality: quality,
+		Shows:   shows,
 	}
 }
 
@@ -36,16 +38,28 @@ func (f *Feed) Poll() {
 	}
 }
 
-func (f *Feed) itemHandler(feed *rss.Feed, ch *rss.Channel, newitems []*rss.Item) {
+func (f *Feed) itemHandler(
+	feed *rss.Feed,
+	ch *rss.Channel,
+	newitems []*rss.Item,
+) {
 	for _, item := range newitems {
 		for _, link := range item.Links {
 			for _, show := range f.Shows {
-				if strings.Contains(link.Href, show) {
+				if f.matchesName(show, link.Href) && f.matchesQuality(show) {
 					go torrent.NewTorrent(item.Title, link.Href).Download()
 				}
 			}
 		}
 	}
+}
+
+func (f *Feed) matchesName(show, href string) bool {
+	return strings.Contains(strings.ToLower(href), strings.ToLower(show))
+}
+
+func (f *Feed) matchesQuality(show string) bool {
+	return f.Quality != "" || strings.Contains(strings.ToLower(show), f.Quality)
 }
 
 func (f *Feed) chanHandler(feed *rss.Feed, newchannels []*rss.Channel) {

@@ -19,6 +19,10 @@ func main() {
 			Name:  "feed",
 			Usage: "Feed URL to check for new shows",
 		},
+		cli.StringFlag{
+			Name:  "quality",
+			Usage: "Quality preferred. e.g.: 1080p",
+		},
 		cli.StringSliceFlag{
 			Name:  "show",
 			Usage: "Show you want to watch",
@@ -36,6 +40,7 @@ func main() {
 		)
 		feed.NewFeed(
 			c.String("feed"),
+			c.String("quality"),
 			c.StringSlice("show"),
 		).Poll()
 	}
