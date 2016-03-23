@@ -25,7 +25,7 @@ func NewTorrent(title, href string) *Torrent {
 
 // Download the torrent to ~/Downloads
 func (t *Torrent) Download() {
-	fmt.Fprintf(os.Stderr, "Downloading %s...\n", t.Title)
+	fmt.Fprintf(os.Stdout, "Downloading %s...\n", t.Title)
 	response, err := http.Get(t.Href)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to download %s\n", t.Title)
