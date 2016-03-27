@@ -59,7 +59,7 @@ func (f *Feed) matchesName(show, href string) bool {
 }
 
 func (f *Feed) matchesQuality(show string) bool {
-	return f.Quality != "" || strings.Contains(strings.ToLower(show), f.Quality)
+	return f.Quality == "" || strings.Contains(strings.ToLower(show), f.Quality)
 }
 
 func (f *Feed) chanHandler(feed *rss.Feed, newchannels []*rss.Channel) {

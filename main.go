@@ -33,16 +33,16 @@ func main() {
 			cli.ShowAppHelp(c)
 			return
 		}
+		shows := c.StringSlice("show")
+		quality := c.String("quality")
+		url := c.String("feed")
 		fmt.Println(
-			"Watching",
-			strings.Join(c.StringSlice("show"), ", ")+".",
+			"Watching", url,
+			"for", strings.Join(shows, ", "),
+			"with quality", quality,
 			"Press CTRL+C to stop.",
 		)
-		feed.NewFeed(
-			c.String("feed"),
-			c.String("quality"),
-			c.StringSlice("show"),
-		).Poll()
+		feed.NewFeed(url, quality, shows).Poll()
 	}
 	app.Run(os.Args)
 }
