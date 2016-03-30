@@ -46,7 +46,7 @@ func (f *Feed) itemHandler(
 	for _, item := range newitems {
 		for _, link := range item.Links {
 			for _, show := range f.Shows {
-				if f.matchesName(show, link.Href) && f.matchesQuality(show) {
+				if f.matchesName(show, link.Href) && f.matchesQuality(link.Href) {
 					go torrent.NewTorrent(item.Title, link.Href).Download()
 				}
 			}
@@ -58,8 +58,8 @@ func (f *Feed) matchesName(show, href string) bool {
 	return strings.Contains(strings.ToLower(href), strings.ToLower(show))
 }
 
-func (f *Feed) matchesQuality(show string) bool {
-	return f.Quality == "" || strings.Contains(strings.ToLower(show), f.Quality)
+func (f *Feed) matchesQuality(href string) bool {
+	return strings.Contains(strings.ToLower(href), strings.ToLower(f.Quality))
 }
 
 func (f *Feed) chanHandler(feed *rss.Feed, newchannels []*rss.Channel) {
