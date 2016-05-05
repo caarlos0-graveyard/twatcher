@@ -26,8 +26,8 @@ $ $EDITOR tvshows.plist
 
 # copy to the proper folder, load and start:
 $ cp tvshows.plist ~/Library/LaunchAgents/tvshows.plist
+$ launchctl unload ~/Library/LaunchAgents/tvshows.plist
 $ launchctl load ~/Library/LaunchAgents/tvshows.plist
-$ launchctl start tvshows
 
 # Make sure it is running:
 $ ps aux | grep tvshow
