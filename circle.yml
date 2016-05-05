@@ -1,0 +1,14 @@
+machine:
+  environment:
+    GO15VENDOREXPERIMENT: 1
+deployment:
+  release:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - curl -s https://raw.githubusercontent.com/caarlos0/go-releaser/master/release | bash -s -- -u caarlos0 -r tvshows -b tvshows -m .
+test:
+  pre:
+    - go get github.com/Masterminds/glide
+  override:
+    - glide install
+    - gotestcover -race $(glide novendor)
