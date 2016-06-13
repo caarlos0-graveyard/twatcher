@@ -24,10 +24,8 @@ $ cp tvshows.plist{.example,}
 # Make your own changes:
 $ $EDITOR tvshows.plist
 
-# copy to the proper folder, load and start:
-$ cp tvshows.plist ~/Library/LaunchAgents/tvshows.plist
-$ launchctl unload ~/Library/LaunchAgents/tvshows.plist
-$ launchctl load ~/Library/LaunchAgents/tvshows.plist
+# Make it run!
+$ ./update
 
 # Make sure it is running:
 $ ps aux | grep tvshow
