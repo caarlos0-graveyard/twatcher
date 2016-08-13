@@ -1,32 +1,32 @@
-# tvshows
+# TorrentWatcher
 
-Agent to automagically download tv shows torrent files to ~/Downloads :bomb:
+Agent to automagically download torrent files to ~/Downloads :bomb:
 
 ## Usage
 
 ```console
-$ go get github.com/caarlos0/tvshows
-$ tvshows --feed YOUR_TORRENT_FEED_URL \
-  --show Vikings \
-  --show "Marvels.Agents.of.S.H.I.E.L.D" \
-  --show Gotham \
-  --show "Game.of.Thrones"
+$ go get github.com/caarlos0/twatcher
+$ twatcher \
+  --feed YOUR_TORRENT_FEED_URL \
+  --name Vikings \
+  --name "Game.of.Thrones" \
+  --filter "1080p"
 ```
 
 ### As an OSX daemon
 
-If you want it to run all the time - which makes sense, by the way, you can
-use the OS X Daemon feature:
+If you want it to run all the time - which makes sense, you can
+use add it as an OSX Daemon:
 
 ```console
-$ cp tvshows.plist{.example,}
+$ cp twatcher.plist{.example,}
 
 # Make your own changes:
-$ $EDITOR tvshows.plist
+$ $EDITOR twatcher.plist
 
 # Make it run!
 $ ./update
 
 # Make sure it is running:
-$ ps aux | grep tvshow
+$ ps aux | grep twatcher
 ```

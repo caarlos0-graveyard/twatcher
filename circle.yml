@@ -1,14 +1,25 @@
 machine:
   environment:
-    GO15VENDOREXPERIMENT: 1
+    IMPORT_PATH: "/home/ubuntu/.go_workspace/src/github.com/caarlos0"
+    APP_PATH: "$IMPORT_PATH/twatcher"
 deployment:
   release:
     tag: /v[0-9]+(\.[0-9]+)*/
     commands:
-      - curl -s https://raw.githubusercontent.com/caarlos0/go-releaser/master/release | bash -s -- -u caarlos0 -r tvshows -b tvshows -m .
+      - curl -o /tmp/release https://raw.githubusercontent.com/caarlos0/go-releaser/master/release
+      - chmod +x /tmp/release
+      - cd "$APP_PATH" && /tmp/release -u caarlos0 -r twatcher -b twatcher
+dependencies:
+  override:
+    - sudo add-apt-repository ppa:masterminds/glide -y
+    - sudo apt-get update
+    - sudo apt-get install glide -y
+    - go get github.com/pierrre/gotestcover
+    - go get golang.org/x/tools/cmd/cover
 test:
   pre:
-    - go get github.com/Masterminds/glide
+    - mkdir -p "$IMPORT_PATH"
+    - ln -sf "$(pwd)" "$IMPORT_PATH/twatcher"
+    - cd "$APP_PATH" &&  glide install
   override:
-    - glide install
-    - gotestcover -race $(glide novendor)
+    - cd "$APP_PATH" && gotestcover -race -coverprofile=coverage.out $(glide novendor)

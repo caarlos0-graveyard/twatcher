@@ -3,24 +3,24 @@
 <plist version="1.0">
 	<dict>
 		<key>Label</key>
-		<string>tvshows</string>
+		<string>twatcher</string>
 		<key>ProgramArguments</key>
 		<array>
-			<string>/Users/carlos/Code/Go/bin/tvshows</string>
+			<string>/Users/carlos/Code/Go/bin/twatcher</string>
 			<string>--feed</string>
 			<string>https://your_feed_url</string>
-			<string>--quality</string>
+			<string>--filter</string>
 			<string>1080p</string>
-			<string>--show</string>
-			<string>Show1</string>
-			<string>--show</string>
-			<string>show2</string>
+			<string>--name</string>
+			<string>name1</string>
+			<string>--name</string>
+			<string>name2</string>
 		</array>
 		<key>RunAtLoad</key>
 		<true/>
 		<key>StandardOutPath</key>
-		<string>/Users/carlos/Library/Logs/tvshows-out.log</string>
+		<string>/Users/carlos/Library/Logs/twatcher-out.log</string>
 		<key>StandardErrorPath</key>
-		<string>/Users/carlos/Library/Logs/tvshows-err.log</string>
+		<string>/Users/carlos/Library/Logs/twatcher-err.log</string>
 	</dict>
 </plist>
