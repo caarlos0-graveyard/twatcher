@@ -47,13 +47,23 @@ func (f *Feed) itemHandler(feed *rss.Feed, ch *rss.Channel, items []*rss.Item) {
 }
 
 func (f *Feed) check(item *rss.Item, link *rss.Link) {
-	href := strings.ToLower(link.Href)
 	for _, name := range f.Names {
-		name = strings.ToLower(name)
-		if strings.Contains(href, name) && strings.Contains(href, f.Filter) {
+		if f.matches(link.Href, name) {
 			go torrent.NewTorrent(item.Title, link.Href).Download()
 		}
 	}
+}
+
+func (f *Feed) clean(s string) string {
+	return strings.Replace(
+		strings.Replace(strings.ToLower(s), ".", "", -1), " ", "", -1,
+	)
+}
+
+func (f *Feed) matches(href, name string) bool {
+	href = f.clean(href)
+	return strings.Contains(href, f.clean(name)) && strings.Contains(href, f.Filter)
+
 }
 
 func (f *Feed) chanHandler(feed *rss.Feed, newchannels []*rss.Channel) {
