@@ -6,14 +6,16 @@ import (
 	"strings"
 
 	"github.com/caarlos0/twatcher/feed"
-	"github.com/codegangsta/cli"
+	"github.com/urfave/cli"
 )
 
-func main() {
+const version = "dev"
 
+func main() {
 	app := cli.NewApp()
 	app.Name = "TorrentWatcher"
 	app.Usage = "Watch a torrent feed for some expressions and downloads them to ~/Downloads"
+	app.Version = version
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "feed",

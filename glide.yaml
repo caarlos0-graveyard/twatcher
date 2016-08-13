@@ -1,4 +1,4 @@
-package: github.com/caarlos0/tvshows
+package: github.com/caarlos0/twatcher
 import:
-- package: github.com/codegangsta/cli
+- package: github.com/urfave/cli
 - package: github.com/jteeuwen/go-pkg-rss

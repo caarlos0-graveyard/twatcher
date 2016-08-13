@@ -1,10 +1,10 @@
-hash: 88eddc903475bb20dda3b6e82d14e1a72b94c0cfc68c4b52fff479a0ef8be7b3
-updated: 2016-03-18T00:14:01.30851643-03:00
+hash: 121900aae2567779dbc83c53b03a704a8a4f7c55a688f7fc2a3834d73a055d01
+updated: 2016-08-13T16:02:56.491989816-03:00
 imports:
-- name: github.com/codegangsta/cli
-  version: aca5b047ed14d17224157c3434ea93bf6cdaadee
 - name: github.com/jteeuwen/go-pkg-rss
   version: 72391e6fd7384785fa3c46a405214a616d6c4a1d
 - name: github.com/jteeuwen/go-pkg-xmlx
   version: 76f54ee73233b171ca9ee82ef837a1fc4d3809c0
-devImports: []
+- name: github.com/urfave/cli
+  version: 168c95418e66e019fe17b8f4f5c45aa62ff80e23
+testImports: []
