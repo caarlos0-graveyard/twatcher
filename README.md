@@ -15,8 +15,8 @@ $ twatcher \
 
 ### As an OSX daemon
 
-If you want it to run all the time - which makes sense, by the way, you can
-use the OS X Daemon feature:
+If you want it to run all the time - which makes sense, you can
+use add it as an OSX Daemon:
 
 ```console
 $ cp twatcher.plist{.example,}

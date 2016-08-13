@@ -14,10 +14,12 @@ dependencies:
     - sudo add-apt-repository ppa:masterminds/glide -y
     - sudo apt-get update
     - sudo apt-get install glide -y
+    - go get github.com/pierrre/gotestcover
+    - go get golang.org/x/tools/cmd/cover
 test:
   pre:
     - mkdir -p "$IMPORT_PATH"
     - ln -sf "$(pwd)" "$IMPORT_PATH/twatcher"
     - cd "$APP_PATH" &&  glide install
   override:
-    - cd "$APP_PATH" && go test -race -coverprofile=coverage.out $(glide novendor)
+    - cd "$APP_PATH" && gotestcover -race -coverprofile=coverage.out $(glide novendor)
