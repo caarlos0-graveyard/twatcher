@@ -3,6 +3,7 @@ package feed
 import (
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 
@@ -47,13 +48,23 @@ func (f *Feed) itemHandler(feed *rss.Feed, ch *rss.Channel, items []*rss.Item) {
 }
 
 func (f *Feed) check(item *rss.Item, link *rss.Link) {
-	href := strings.ToLower(link.Href)
 	for _, name := range f.Names {
-		name = strings.ToLower(name)
-		if strings.Contains(href, name) && strings.Contains(href, f.Filter) {
+		if f.matches(link.Href, name) {
 			go torrent.NewTorrent(item.Title, link.Href).Download()
 		}
 	}
+}
+
+func (f *Feed) matches(href, name string) bool {
+	href = strings.ToLower(href)
+	matched, err := regexp.MatchString(
+		strings.Replace(strings.ToLower(name), " ", ".?", -1), href,
+	)
+	if err != nil {
+		return false
+	}
+	return matched && strings.Contains(href, f.Filter)
+
 }
 
 func (f *Feed) chanHandler(feed *rss.Feed, newchannels []*rss.Channel) {
