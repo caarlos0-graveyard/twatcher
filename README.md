@@ -28,5 +28,5 @@ $ $EDITOR twatcher.plist
 $ ./update
 
 # Make sure it is running:
-$ ps aux | grep tvshow
+$ ps aux | grep twatcher
 ```
