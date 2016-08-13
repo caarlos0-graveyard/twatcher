@@ -5,27 +5,27 @@ import (
 	"os"
 	"strings"
 
-	"github.com/caarlos0/tvshows/feed"
+	"github.com/caarlos0/twatcher/feed"
 	"github.com/codegangsta/cli"
 )
 
 func main() {
 
 	app := cli.NewApp()
-	app.Name = "TVShows"
-	app.Usage = "Let this binary running, and it will download your favorite tv shows to ~/Downloads"
+	app.Name = "TorrentWatcher"
+	app.Usage = "Watch a torrent feed for some expressions and downloads them to ~/Downloads"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "feed",
-			Usage: "Feed URL to check for new shows",
-		},
-		cli.StringFlag{
-			Name:  "quality",
-			Usage: "Quality preferred. e.g.: 1080p",
+			Usage: "Feed URL to watch for",
 		},
 		cli.StringSliceFlag{
-			Name:  "show",
-			Usage: "Show you want to watch",
+			Name:  "name",
+			Usage: "Name to look for",
+		},
+		cli.StringFlag{
+			Name:  "filter",
+			Usage: "A filter to use in all names, e.g.: 1080p",
 		},
 	}
 	app.Action = func(c *cli.Context) {
@@ -33,16 +33,16 @@ func main() {
 			cli.ShowAppHelp(c)
 			return
 		}
-		shows := c.StringSlice("show")
-		quality := c.String("quality")
+		names := c.StringSlice("name")
+		filter := c.String("filter")
 		url := c.String("feed")
 		fmt.Println(
 			"Watching", url,
-			"for", strings.Join(shows, ", "),
-			"with quality", quality,
+			"for", strings.Join(names, ", "),
+			"with filter", filter,
 			"Press CTRL+C to stop.",
 		)
-		feed.NewFeed(url, quality, shows).Poll()
+		feed.NewFeed(url, filter, names).Poll()
 	}
 	app.Run(os.Args)
 }
