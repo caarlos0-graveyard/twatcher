@@ -33,6 +33,12 @@ var resultSet = []struct {
 		true,
 	},
 	{
+		"https://www.blah.com/Marvels.Agents.of.S.H.I.E.L.D.S01.E02.720p.HDTV.torrent",
+		"Marvels Agents of SHIELD",
+		"720p",
+		true,
+	},
+	{
 		"https://www.blah.com/Pokemon.S19E26.DUBBED.720p.HDTV.x264-W4F.torrent",
 		"Pokemon",
 		"1080p",
@@ -48,7 +54,7 @@ var resultSet = []struct {
 
 func TestMatches(t *testing.T) {
 	for _, set := range resultSet {
-		if set.matches != NewFeed("", set.filter, []string{}).match(set.url, set.name) {
+		if set.matches != NewFeed("", set.filter, []string{}).matches(set.url, set.name) {
 			t.Error("matches", set)
 		}
 	}

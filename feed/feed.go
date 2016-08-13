@@ -3,7 +3,6 @@ package feed
 import (
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 	"time"
 
@@ -55,15 +54,15 @@ func (f *Feed) check(item *rss.Item, link *rss.Link) {
 	}
 }
 
-func (f *Feed) matches(href, name string) bool {
-	href = strings.ToLower(href)
-	matched, err := regexp.MatchString(
-		strings.Replace(strings.ToLower(name), " ", ".?", -1), href,
+func (f *Feed) clean(s string) string {
+	return strings.Replace(
+		strings.Replace(strings.ToLower(s), ".", "", -1), " ", "", -1,
 	)
-	if err != nil {
-		return false
-	}
-	return matched && strings.Contains(href, f.Filter)
+}
+
+func (f *Feed) matches(href, name string) bool {
+	href = f.clean(href)
+	return strings.Contains(href, f.clean(name)) && strings.Contains(href, f.Filter)
 
 }
 
