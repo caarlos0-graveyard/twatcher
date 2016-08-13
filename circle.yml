@@ -8,7 +8,7 @@ deployment:
     commands:
       - curl -o /tmp/release https://raw.githubusercontent.com/caarlos0/go-releaser/master/release
       - chmod +x /tmp/release
-      - cd "$APP_PATH" && /tmp/release -u caarlos0 -r twatcher -b twatcher -m main.go -e twatcher.plist.example
+      - cd "$APP_PATH" && /tmp/release --user caarlos0 --repo twatcher --binary twatcher --main main.go --extra twatcher.plist.example
 dependencies:
   override:
     - sudo add-apt-repository ppa:masterminds/glide -y
