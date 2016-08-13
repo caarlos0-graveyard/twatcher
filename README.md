@@ -9,8 +9,8 @@ $ go get github.com/caarlos0/twatcher
 $ twatcher \
   --feed YOUR_TORRENT_FEED_URL \
   --name Vikings \
-  --name "Game.of.Thrones" \
-  --filter "1080p"
+  --name "Game of Thrones" \
+  --filter "1080p.HDTV"
 ```
 
 ### As an OSX daemon
