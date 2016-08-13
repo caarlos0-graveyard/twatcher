@@ -39,6 +39,12 @@ var resultSet = []struct {
 		true,
 	},
 	{
+		"https://www.blah.com/Marvels.Agents.of.S.H.I.E.L.D.S01.E02.720p.HDTV.torrent",
+		"Marvels.Agents.of.s.h.i.e.l.d.",
+		"720p",
+		true,
+	},
+	{
 		"https://www.blah.com/Pokemon.S19E26.DUBBED.720p.HDTV.x264-W4F.torrent",
 		"Pokemon",
 		"1080p",
