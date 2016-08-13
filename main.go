@@ -30,10 +30,9 @@ func main() {
 			Usage: "A filter to use in all names, e.g.: 1080p",
 		},
 	}
-	app.Action = func(c *cli.Context) {
+	app.Action = func(c *cli.Context) error {
 		if c.NumFlags() == 0 {
-			cli.ShowAppHelp(c)
-			return
+			return cli.ShowAppHelp(c)
 		}
 		names := c.StringSlice("name")
 		filter := c.String("filter")
@@ -45,6 +44,7 @@ func main() {
 			"Press CTRL+C to stop.",
 		)
 		feed.NewFeed(url, filter, names).Poll()
+		return nil
 	}
 	app.Run(os.Args)
 }
