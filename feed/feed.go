@@ -1,8 +1,7 @@
 package feed
 
 import (
-	"fmt"
-	"os"
+	"log"
 	"strings"
 	"time"
 
@@ -30,9 +29,9 @@ func NewFeed(uri, filter string, names []string) *Feed {
 func (f *Feed) Poll() {
 	feed := rss.New(10, true, f.chanHandler, f.itemHandler)
 	for {
-		fmt.Println("Looking for new torrents...")
+		log.Println("Looking for new torrents...")
 		if err := feed.Fetch(f.URL, nil); err != nil {
-			fmt.Fprintf(os.Stderr, "Failed to fetch feed: %s: %s\n", f.URL, err)
+			log.Printf("Failed to fetch feed: %s: %s\n", f.URL, err)
 		}
 		<-time.After(time.Duration(5 * time.Minute))
 	}
@@ -47,8 +46,10 @@ func (f *Feed) itemHandler(feed *rss.Feed, ch *rss.Channel, items []*rss.Item) {
 }
 
 func (f *Feed) check(item *rss.Item, link *rss.Link) {
+	log.Println("Checking", link.Href)
 	for _, name := range f.Names {
 		if f.matches(link.Href, name) {
+			log.Println("Matches", item.Title, link.Href)
 			go torrent.NewTorrent(item.Title, link.Href).Download()
 		}
 	}
