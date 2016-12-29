@@ -6,9 +6,7 @@ deployment:
   release:
     tag: /v[0-9]+(\.[0-9]+)*/
     commands:
-      - curl -o /tmp/release https://raw.githubusercontent.com/caarlos0/go-releaser/master/release
-      - chmod +x /tmp/release
-      - cd "$APP_PATH" && /tmp/release --user caarlos0 --repo twatcher --binary twatcher --main main.go --extra twatcher.plist.example
+      - curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest | bash
 dependencies:
   override:
     - sudo add-apt-repository ppa:masterminds/glide -y

@@ -30,3 +30,10 @@ $ ./update
 # Make sure it is running:
 $ ps aux | grep twatcher
 ```
+
+## Install
+
+```console
+brew tap caarlos0/formulae
+brew install twatcher
+```

@@ -1,0 +1,4 @@
+repo: caarlos0/twatcher
+binary_name: twatcher
+brew:
+  repo: caarlos0/homebrew-formulae
