@@ -6,7 +6,7 @@ Agent to automagically download torrent files to `~/Downloads` :bomb:
 
 ```console
 brew tap caarlos0/formulae
-brew install am-i-working
+brew install twatcher
 ```
 
 ## Usage
