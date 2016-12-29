@@ -3,7 +3,6 @@ package feed
 import (
 	"log"
 	"strings"
-	"time"
 
 	"github.com/caarlos0/twatcher/torrent"
 	rss "github.com/jteeuwen/go-pkg-rss"
@@ -28,12 +27,9 @@ func NewFeed(uri, filter string, names []string) *Feed {
 // Poll updates the feed and download it to ~/Downloads
 func (f *Feed) Poll() {
 	feed := rss.New(10, true, f.chanHandler, f.itemHandler)
-	for {
-		log.Println("Looking for new torrents...")
-		if err := feed.Fetch(f.URL, nil); err != nil {
-			log.Printf("Failed to fetch feed: %s: %s\n", f.URL, err)
-		}
-		<-time.After(time.Duration(5 * time.Minute))
+	log.Println("Looking for new torrents...")
+	if err := feed.Fetch(f.URL, nil); err != nil {
+		log.Printf("Failed to fetch feed: %s: %s\n", f.URL, err)
 	}
 }
 
