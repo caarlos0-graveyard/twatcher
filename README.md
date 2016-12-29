@@ -1,4 +1,4 @@
-# TorrentWatcher
+# TorrentWatcher [![Build Status](https://travis-ci.org/caarlos0/twatcher.svg?branch=master)](https://travis-ci.org/caarlos0/twatcher)
 
 Agent to automagically download torrent files to ~/Downloads :bomb:
 
@@ -35,5 +35,5 @@ $ ps aux | grep twatcher
 
 ```console
 brew tap caarlos0/formulae
-brew install twatcher
+brew install am-i-working
 ```
