@@ -1,4 +1,0 @@
-#!/bin/bash
-cp -f twatcher.plist ~/Library/LaunchAgents/twatcher.plist
-launchctl unload ~/Library/LaunchAgents/twatcher.plist
-launchctl load ~/Library/LaunchAgents/twatcher.plist

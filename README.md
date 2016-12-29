@@ -1,11 +1,17 @@
 # TorrentWatcher [![Build Status](https://travis-ci.org/caarlos0/twatcher.svg?branch=master)](https://travis-ci.org/caarlos0/twatcher)
 
-Agent to automagically download torrent files to ~/Downloads :bomb:
+Agent to automagically download torrent files to `~/Downloads` :bomb:
+
+## Install
+
+```console
+brew tap caarlos0/formulae
+brew install am-i-working
+```
 
 ## Usage
 
 ```console
-$ go get github.com/caarlos0/twatcher
 $ twatcher \
   --feed YOUR_TORRENT_FEED_URL \
   --name Vikings \
@@ -13,27 +19,10 @@ $ twatcher \
   --filter "1080p.HDTV"
 ```
 
-### As an OSX daemon
+### crontab
 
-If you want it to run all the time - which makes sense, you can
-use add it as an OSX Daemon:
+You can make it run every X minutes by putting it on your crontab.
 
-```console
-$ cp twatcher.plist{.example,}
-
-# Make your own changes:
-$ $EDITOR twatcher.plist
-
-# Make it run!
-$ ./update
-
-# Make sure it is running:
-$ ps aux | grep twatcher
-```
-
-## Install
-
-```console
-brew tap caarlos0/formulae
-brew install am-i-working
+```crontab
+0/10 * * * * /usr/local/bin/twatcher --feed YOUR_TORRENT_FEED_URL --filter "1080p.HDTV" --name Vikings --name "Game of Thrones" > ~/Library/Logs/twatcher.log 2>&1
 ```
