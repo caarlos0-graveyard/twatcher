@@ -35,5 +35,5 @@ $ ps aux | grep twatcher
 
 ```console
 brew tap caarlos0/formulae
-brew install am-i-working
+brew install twatcher
 ```
