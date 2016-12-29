@@ -1,4 +1,4 @@
-# TorrentWatcher [![Build Status](https://travis-ci.org/caarlos0/twatcher.svg?branch=master)](https://travis-ci.org/caarlos0/twatcher)
+# TorrentWatcher [![Build Status](https://travis-ci.org/caarlos0/twatcher.svg?branch=master)](https://travis-ci.org/caarlos0/twatcher) [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=flat-square)](https://github.com/goreleaser)
 
 Agent to automagically download torrent files to `~/Downloads` :bomb:
 
