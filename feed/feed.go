@@ -1,9 +1,9 @@
 package feed
 
 import (
-	"log"
 	"strings"
 
+	log "github.com/Sirupsen/logrus"
 	"github.com/caarlos0/twatcher/torrent"
 	rss "github.com/jteeuwen/go-pkg-rss"
 )
@@ -25,12 +25,9 @@ func NewFeed(uri, filter string, names []string) *Feed {
 }
 
 // Poll updates the feed and download it to ~/Downloads
-func (f *Feed) Poll() {
+func (f *Feed) Poll() error {
 	feed := rss.New(10, true, f.chanHandler, f.itemHandler)
-	log.Println("Looking for new torrents...")
-	if err := feed.Fetch(f.URL, nil); err != nil {
-		log.Printf("Failed to fetch feed: %s: %s\n", f.URL, err)
-	}
+	return feed.Fetch(f.URL, nil)
 }
 
 func (f *Feed) itemHandler(feed *rss.Feed, ch *rss.Channel, items []*rss.Item) {
@@ -42,11 +39,11 @@ func (f *Feed) itemHandler(feed *rss.Feed, ch *rss.Channel, items []*rss.Item) {
 }
 
 func (f *Feed) check(item *rss.Item, link *rss.Link) {
-	log.Println("Checking", link.Href)
+	log.WithField("href", link.Href).Println("Checking...")
 	for _, name := range f.Names {
 		if f.matches(link.Href, name) {
-			log.Println("Matches", item.Title, link.Href)
-			go torrent.NewTorrent(item.Title, link.Href).Download()
+			log.WithField("title", item.Title).Println("Matches!")
+			torrent.NewTorrent(item.Title, link.Href).Download()
 		}
 	}
 }

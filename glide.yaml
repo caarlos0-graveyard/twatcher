@@ -2,3 +2,5 @@ package: github.com/caarlos0/twatcher
 import:
 - package: github.com/urfave/cli
 - package: github.com/jteeuwen/go-pkg-rss
+- package: github.com/Sirupsen/logrus
+  version: ~0.11.0

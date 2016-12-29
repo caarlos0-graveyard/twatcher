@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
+	log "github.com/Sirupsen/logrus"
 	"github.com/caarlos0/twatcher/feed"
 	"github.com/urfave/cli"
 )
 
-var version = "dev"
+var version = "master"
 
 func main() {
 	app := cli.NewApp()
@@ -37,14 +37,11 @@ func main() {
 		names := c.StringSlice("name")
 		filter := c.String("filter")
 		url := c.String("feed")
-		fmt.Println(
-			"Watching", url,
-			"for", strings.Join(names, ", "),
-			"with filter", filter,
-			"Press CTRL+C to stop.",
-		)
-		feed.NewFeed(url, filter, names).Poll()
-		return nil
+		log.WithField("url", url).
+			WithField("names", strings.Join(names, ",")).
+			WithField("filter", filter).
+			Println("Looking for new torrents...")
+		return feed.NewFeed(url, filter, names).Poll()
 	}
 	app.Run(os.Args)
 }
