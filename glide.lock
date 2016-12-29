@@ -1,10 +1,12 @@
-hash: 121900aae2567779dbc83c53b03a704a8a4f7c55a688f7fc2a3834d73a055d01
-updated: 2016-08-13T16:02:56.491989816-03:00
+hash: 098d85327081d0f4e6d61ab7f7f56d8258a64253c736a17c44e1e1da061f1211
+updated: 2016-12-29T17:32:01.293245015-02:00
 imports:
 - name: github.com/jteeuwen/go-pkg-rss
   version: 72391e6fd7384785fa3c46a405214a616d6c4a1d
 - name: github.com/jteeuwen/go-pkg-xmlx
   version: 76f54ee73233b171ca9ee82ef837a1fc4d3809c0
+- name: github.com/Sirupsen/logrus
+  version: d26492970760ca5d33129d2d799e34be5c4782eb
 - name: github.com/urfave/cli
   version: 168c95418e66e019fe17b8f4f5c45aa62ff80e23
 testImports: []
