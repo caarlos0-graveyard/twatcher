@@ -10,3 +10,9 @@ build:
 archive:
   format: zip
   name_template: "{{.BinaryName}}_{{.Version}}_{{.Os}}_{{.Arch}}"
+  replacements:
+    windows: Windows
+    linux: Linux
+    Darwin: MacOS
+    386: 32bits
+    amd64: 64bits
