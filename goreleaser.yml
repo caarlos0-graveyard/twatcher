@@ -13,6 +13,6 @@ archive:
   replacements:
     windows: Windows
     linux: Linux
-    Darwin: MacOS
+    darwin: MacOS
     386: 32bits
     amd64: 64bits
