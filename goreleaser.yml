@@ -7,3 +7,5 @@ build:
     - windows
     - linux
     - darwin
+archive:
+  format: zip
