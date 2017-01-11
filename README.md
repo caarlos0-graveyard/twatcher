@@ -5,8 +5,7 @@ Automagically download torrent files to `~/Downloads` :bomb:
 ## Install
 
 ```console
-brew tap caarlos0/formulae
-brew install twatcher
+brew install caarlos0/tap/twatcher
 ```
 
 ## Usage
