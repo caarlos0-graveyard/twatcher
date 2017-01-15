@@ -1,10 +1,8 @@
-repo: caarlos0/twatcher
-binary_name: twatcher
 brew:
   repo: caarlos0/homebrew-tap
   folder: Formula
 build:
-  oses:
+  goos:
     - windows
     - linux
     - darwin
